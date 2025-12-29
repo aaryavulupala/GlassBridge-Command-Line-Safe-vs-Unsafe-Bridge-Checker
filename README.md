@@ -1,24 +1,39 @@
-GlassBridge
+# GlassBridge (Java)
 
-A simple Java command-line program that simulates the Squid Game “glass bridge” check.
+A simple Java command-line program that simulates the Squid Game “Glass Bridge” challenge. The program checks whether a chosen left/right path across a 2×10 bridge is safe based on provided boolean tile values.
 
-You provide:
-	•	20 booleans describing which tiles are safe (true) or unsafe (false) on a 2-row × 10-column bridge
-	•	10 choices (L or R) representing the player’s path across the 10 columns
+## Description
+The bridge consists of 2 rows and 10 columns. Each tile is either safe (`true`) or unsafe (`false`). The user provides a sequence of left (`L`) and right (`R`) choices. The program determines whether the entire path is safe.
 
-The program prints:
-	•	Safe if every chosen tile is true
-	•	Unsafe if any chosen tile is false
+## Requirements
+- Java
 
-How it works
-	•	Inputs args[0..19] fill a 2×10 boolean grid:
-	•	For each column col (0–9):
-	•	args[2*col] → row 0 (Left)
-	•	args[2*col+1] → row 1 (Right)
-	•	Inputs args[20..29] are the path:
-	•	L selects row 0
-	•	R selects row 1
-	•	The program checks the selected tile in each column and stops early if a tile is unsafe.
+## Compile
+javac GlassBridge.java
 
-Requirements
-	•	Java 8+ (works on newer versions too)
+## Run
+java GlassBridge <20 booleans> <10 L/R chars>
+
+Example:
+java GlassBridge true false true false true false true false true false true false true false true false true false true false L L L L L L L L L L
+
+## Input Format
+- First 20 inputs: `true` or `false` (case-insensitive)
+  - Two values per column (left then right)
+- Last 10 inputs: `L` or `R` (case-insensitive)
+  - One choice per column
+
+## Game Logic
+- `L` selects the left tile (row 0)
+- `R` selects the right tile (row 1)
+- If all chosen tiles are `true`, the path is safe
+- If any chosen tile is `false`, the path is unsafe
+
+## Output
+Safe  
+or  
+Unsafe
+
+## Notes
+- Exactly 30 arguments must be provided
+- Invalid input formats print a usage message and exit
